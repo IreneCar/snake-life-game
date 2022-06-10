@@ -45,10 +45,11 @@ drawSnake();
 
 
 // ------------------------ 3. El movimiento la serpiente ------------------------
-//horizontal movement
+//horizontal & vertical movement
 function moveSnake() {
 	const head = {x: snake[0].x + dx, y: snake[0].y + dy};
 	snake.unshift(head);
 	snake.pop();
 }
+
 
