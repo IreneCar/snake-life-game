@@ -3,9 +3,11 @@ body {
 }
 
 canvas {
-	background-color: #d963d0;
+	background-color: #464555;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);  
 }
+
+
