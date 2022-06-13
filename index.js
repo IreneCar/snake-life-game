@@ -1,11 +1,13 @@
 // ------------------------ 1. creamos canvas ------------------------
+
 //Creating canvas
 const canvas = document.querySelector("#gameCanvas");
 //2 dimentional drawing context
 const ctx = canvas.getContext("2d");
 
 
-// ------------------------ 2. Update Screen ------------------------
+
+// ------------------------ Variables que usaremos ------------------------
 
 let speed = 7;
 
@@ -18,11 +20,18 @@ let headX = 15;
 // posición de la cabeza de la serpiente en vertical
 let headY = 15;
 
+//caramelos de la felicidad
+let happyCandyX = 5;
+let happyCandyY= 5;
+
 //Velocidad Horizontal
 let xVelocity = 0;
 //Velocidad Vertical
 let yVelocity = 0;
 
+
+
+// ------------------------ 2. Update Screen ------------------------
 
 // Esta función refrescará el canvas
 function canvasUpdate(){
@@ -38,6 +47,9 @@ function clearScreen(){
 	ctx.fillRect(0, 0, canvas.clientWidth, canvas.height);
 }
 
+
+// ------------------------ 3. Create the snake ------------------------
+
 //Esta función dibuja la cabeza de la serpiente
 function drawSnakeHead(){
 	ctx.beginPath();
@@ -52,23 +64,50 @@ function changeSnakePosition(){
 	headY = headY + yVelocity;
 }
 
+
+// ------------------------ 4. Make the snake move ------------------------
+
 //usamos un EventListener para llamar la función que permite el uso del teclado
 document.body.addEventListener('keydown', keyDown)
 //Esta función permite el uso del teclado para mover la serpiente
 function keyDown(event){
 	//up
 	if(event.key === 'ArrowUp'){
+		if(yVelocity == 1){
+			return;
+		}
 		yVelocity = -1;
 		xVelocity = 0;
 	}
 
 	//down
 	if(event.key === 'ArrowDown'){
+		if(yVelocity == -1){
+			return;
+		}
 		yVelocity = 1;
 		xVelocity = 0;
 	}
+
+	//right
+	if(event.key === 'ArrowRight'){
+		if(xVelocity == -1){
+			return;
+		}
+		yVelocity = 0;
+		xVelocity = 1;
+	}
+
+	//left
+	if(event.key === 'ArrowLeft'){
+		if(xVelocity == 1){
+			return;
+		}
+		yVelocity = 0;
+		xVelocity = -1;
+	}
+
 }
-console.log(event.key);
 
 
 canvasUpdate();
