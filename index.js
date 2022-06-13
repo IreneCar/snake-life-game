@@ -52,4 +52,12 @@ function moveSnake() {
 	snake.pop();
 }
 
+//Adding arrows movement
 
+
+//To know how the arrows are named 
+/* window.addEventListener("keydown", function(event) {
+		const p = document.createElement("p");
+		p.textContent = `KeyboardEvent: key='${event.key}' | code='${event.code}'`;
+		document.getElementById("keys").appendChild(p);
+	}, true); */
