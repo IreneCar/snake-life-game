@@ -3,7 +3,7 @@ body {
 }
 
 canvas {
-	background-color: #464555;
+	/*box-shadow: #393844 20px 10px 50px;*/
 	position: absolute;
 	top: 50%;
 	left: 50%;
