@@ -27,6 +27,7 @@ let yVelocity = 0;
 // Esta función refrescará el canvas
 function canvasUpdate(){
 	clearScreen();
+	changeSnakePosition();
 	drawSnakeHead();
 	setTimeout(canvasUpdate, 1000/ speed);
 }
@@ -44,5 +45,30 @@ function drawSnakeHead(){
 	ctx.arc(headX * gridNumber, headY * gridNumber, gridSize, 0, 2*Math.PI);
 	ctx.fill();
 }
+
+//Función que attach la cabeza de la serpiente con la velocidad, para que esta se mueva
+function changeSnakePosition(){
+	headX = headX + xVelocity;
+	headY = headY + yVelocity;
+}
+
+//usamos un EventListener para llamar la función que permite el uso del teclado
+document.body.addEventListener('keydown', keyDown)
+//Esta función permite el uso del teclado para mover la serpiente
+function keyDown(event){
+	//up
+	if(event.key === 'ArrowUp'){
+		yVelocity = -1;
+		xVelocity = 0;
+	}
+
+	//down
+	if(event.key === 'ArrowDown'){
+		yVelocity = 1;
+		xVelocity = 0;
+	}
+}
+console.log(event.key);
+
 
 canvasUpdate();
