@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
+
+
 body {
   background-color: lightgoldenrodyellow;
-
-	
+	font-family: 'Poppins', sans-serif;	
 }
 
 
@@ -12,6 +14,20 @@ body {
 	justify-content: space-evenly;
 	align-items: flex-start;
 	align-content: center;
-	margin-top: 25%;
+	margin-top: 20%;
 	
+}
+
+h1{
+	color: #00adad;
+	font-size: 80px;
+}
+
+h3 {
+	color: #d963d0;
+	font-size: 30px;
+}
+
+p {
+	color: #464555;
 }
