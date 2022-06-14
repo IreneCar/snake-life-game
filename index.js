@@ -42,7 +42,7 @@ let yVelocity = 0;
 
 //Score
 let score = 0;
-
+console.log("Score: ", score);
 
 
 // ------------------------ 2. Update Screen ------------------------
@@ -51,9 +51,13 @@ let score = 0;
 function canvasUpdate(){
 	clearScreen();
 	changeSnakePosition();
+
 	checkCandyCollision();
 	drawHappyCandy();
 	drawSnake();
+
+	//scoreUpdate();
+
 	setTimeout(canvasUpdate, 1000/ speed);
 }
 
@@ -155,6 +159,7 @@ function drawHappyCandy() {
 
 
 // ------------------------ 6. Colisiones ------------------------
+
 //Esta función hace que cuando la posición X y Y de la cabeza de la serpiente y del caramelo se encuentren
 //el caramelo cambie su posición de manera random y el uso de Math.floor es para redondear el número de la posición.
 function checkCandyCollision(){
@@ -163,9 +168,26 @@ function checkCandyCollision(){
 		happyCandyY = Math.floor(Math.random() * gridNumber);
 		//incrementamos el tamaño de la serpiente
 		tailLength ++;
+		score ++;
+		console.log("score2: ",score);
 	}
 	
 }
+
+
+// ------------------------ 7. Score ------------------------
+//Con esto entramos en el parrafo del documento que en un inicio está vacío en el html
+let scoreElem = document.querySelector(".score");
+// entramos al contenido
+let scoreNum = scoreElem.innerHTML;
+
+function scoreUpdate(){
+	scoreNum = score;
+	console.log("ScoreNum", scoreNum);
+	return scoreNum;
+}
+scoreUpdate();
+
 
 
 canvasUpdate();

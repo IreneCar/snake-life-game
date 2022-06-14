@@ -20,7 +20,7 @@ body {
 
 h1{
 	color: #00adad;
-	font-size: 80px;
+	font-size: 100px;
 }
 
 h3 {
@@ -30,4 +30,9 @@ h3 {
 
 p {
 	color: #464555;
+}
+
+.score {
+	color: #00adad;
+	font-size: 60px;
 }
