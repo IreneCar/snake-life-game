@@ -76,7 +76,7 @@ for (let i = 0; i < snakeParts.length; i++){
 }
 
 snakeParts.push(new SnakePart(headX, headY)); // añade una bola al final de la array
-if(snakeParts.length > tailLength){
+while(snakeParts.length > tailLength){
 	snakeParts.shift(); //Cuando el contenido del array sea mayor a tailLength elimina el primer elemento del array
 }
 
