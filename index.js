@@ -10,7 +10,7 @@ const ctx = canvas.getContext("2d");
 // ------------------------ Variables que usaremos ------------------------
 
 //clase que contiene las posiciones X y Y del cuerpo de la serpiente
-class snakePart{
+class SnakePart{
 	constructor(x, y){
 		this.x = x;
 		this.y = y;
@@ -29,7 +29,6 @@ let headX = 15;
 let headY = 15;
 // Array con las partes del cuerpo de la serpiente
 const snakeParts = [];
-//El largo de la serpiente que irá incrementando a medida que come caramelos
 let tailLength = 2;
 
 //caramelos de la felicidad
@@ -51,7 +50,7 @@ function canvasUpdate(){
 	changeSnakePosition();
 	checkCandyCollision();
 	drawHappyCandy();
-	drawSnakeHead();
+	drawSnake();
 	setTimeout(canvasUpdate, 1000/ speed);
 }
 
@@ -65,11 +64,28 @@ function clearScreen(){
 // ------------------------ 3. Create the snake ------------------------
 
 //Esta función dibuja la cabeza de la serpiente
-function drawSnakeHead(){
+function drawSnake(){
+
+//Cuerpo de la serpiente
+ctx.fillStyle = "#00ADAD";
+for (let i = 0; i < snakeParts.length; i++){
+	let part = snakeParts[i];
 	ctx.beginPath();
+	ctx.arc(part.x * gridNumber, part.y * gridNumber, gridSize, 0, 2*Math.PI);
+	ctx.fill();
+}
+
+snakeParts.push(new SnakePart(headX, headY)); // añade una bola al final de la array
+if(snakeParts.length > tailLength){
+	snakeParts.shift(); //Cuando el contenido del array sea mayor a tailLength elimina el primer elemento del array
+}
+
+//Cabeza de la serpiente
+ctx.beginPath();
 	ctx.fillStyle = "#ffabf6";
 	ctx.arc(headX * gridNumber, headY * gridNumber, gridSize, 0, 2*Math.PI);
 	ctx.fill();
+
 }
 
 //Función que attach la cabeza de la serpiente con la velocidad, para que esta se mueva
@@ -145,6 +161,7 @@ function checkCandyCollision(){
 		//incrementamos el tamaño de la serpiente
 		tailLength ++;
 	}
+	
 }
 
 
