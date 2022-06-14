@@ -40,6 +40,9 @@ let xVelocity = 0;
 //Velocidad Vertical
 let yVelocity = 0;
 
+//Score
+let score = 0;
+
 
 
 // ------------------------ 2. Update Screen ------------------------

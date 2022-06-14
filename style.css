@@ -1,19 +1,17 @@
 body {
   background-color: lightgoldenrodyellow;
-}
-/*
-canvas {
-	box-shadow: #393844 20px 10px 50px;
-  position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);  
-}*/
 
-div {
+	
+}
+
+
+.flexContainer {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
-	justify-content:center;
-	align-items: center;
+	justify-content: space-evenly;
+	align-items: flex-start;
+	align-content: center;
+	margin-top: 25%;
+	
 }
