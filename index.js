@@ -9,6 +9,14 @@ const ctx = canvas.getContext("2d");
 
 // ------------------------ Variables que usaremos ------------------------
 
+//clase que contiene las posiciones X y Y del cuerpo de la serpiente
+class snakePart{
+	constructor(x, y){
+		this.x = x;
+		this.y = y;
+	}
+}
+
 let speed = 7;
 
 // cuadrícula creada que crea una rejilla que consta de 20 cuadros en vertical x 20 en horizontal imaginarios 
@@ -19,6 +27,10 @@ let gridSize = canvas.width / gridNumber - 20;
 let headX = 15;
 // posición de la cabeza de la serpiente en vertical
 let headY = 15;
+// Array con las partes del cuerpo de la serpiente
+const snakeParts = [];
+//El largo de la serpiente que irá incrementando a medida que come caramelos
+let tailLength = 2;
 
 //caramelos de la felicidad
 let happyCandyX = 5;
@@ -117,17 +129,21 @@ function keyDown(event){
 //función para crear el caramelo de la felicidad
 function drawHappyCandy() {
 	ctx.beginPath();
-	ctx.fillStyle = "#00ADAD";
+	ctx.fillStyle = "#FFB379";
 	ctx.arc(happyCandyX * gridNumber, happyCandyY * gridNumber, gridSize, 0, 2*Math.PI);
 	ctx.fill();
 }
 
 
 // ------------------------ 6. Colisiones ------------------------
+//Esta función hace que cuando la posición X y Y de la cabeza de la serpiente y del caramelo se encuentren
+//el caramelo cambie su posición de manera random y el uso de Math.floor es para redondear el número de la posición.
 function checkCandyCollision(){
 	if(headX === happyCandyX && headY === happyCandyY){
 		happyCandyX = Math.floor(Math.random() * gridNumber);
 		happyCandyY = Math.floor(Math.random() * gridNumber);
+		//incrementamos el tamaño de la serpiente
+		tailLength ++;
 	}
 }
 
