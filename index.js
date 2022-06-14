@@ -37,6 +37,8 @@ let yVelocity = 0;
 function canvasUpdate(){
 	clearScreen();
 	changeSnakePosition();
+	checkCandyCollision();
+	drawHappyCandy();
 	drawSnakeHead();
 	setTimeout(canvasUpdate, 1000/ speed);
 }
@@ -107,6 +109,26 @@ function keyDown(event){
 		xVelocity = -1;
 	}
 
+}
+
+
+// ------------------------ 5. El Caramelo de la Felicidad ------------------------
+
+//función para crear el caramelo de la felicidad
+function drawHappyCandy() {
+	ctx.beginPath();
+	ctx.fillStyle = "#00ADAD";
+	ctx.arc(happyCandyX * gridNumber, happyCandyY * gridNumber, gridSize, 0, 2*Math.PI);
+	ctx.fill();
+}
+
+
+// ------------------------ 6. Colisiones ------------------------
+function checkCandyCollision(){
+	if(headX === happyCandyX && headY === happyCandyY){
+		happyCandyX = Math.floor(Math.random() * gridNumber);
+		happyCandyY = Math.floor(Math.random() * gridNumber);
+	}
 }
 
 
