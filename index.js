@@ -41,7 +41,7 @@ let xVelocity = 0;
 let yVelocity = 0;
 
 //Score
-let score = 0;
+let score = 1;
 console.log("Score: ", score);
 
 
@@ -168,16 +168,23 @@ function checkCandyCollision(){
 		happyCandyY = Math.floor(Math.random() * gridNumber);
 		//incrementamos el tamaño de la serpiente
 		tailLength ++;
+
+		let scoreElem = document.querySelector("#score");
+	  scoreElem.innerHTML = score;
 		score ++;
 		console.log("score2: ",score);
 	}
+
+	
+	
 	
 }
 
 
 // ------------------------ 7. Score ------------------------
+/*
 //Con esto entramos en el parrafo del documento que en un inicio está vacío en el html
-let scoreElem = document.querySelector(".score");
+let scoreElem = document.querySelector("#score");
 // entramos al contenido
 let scoreNum = scoreElem.innerHTML;
 
@@ -187,7 +194,7 @@ function scoreUpdate(){
 	return scoreNum;
 }
 scoreUpdate();
-
+*/
 
 
 canvasUpdate();
