@@ -189,10 +189,35 @@ function checkCandyCollision(){
 function isGameOver(){
 	let gameOver = false;
 
-	//walls
-	if(headX < 0){
+	//colision con las paredes:
+	//izquierda
+	if(headX  < 0){
 		gameOver = true;
 	}
+	//arriba
+	if(headY < 0){
+		gameOver = true;
+	}
+	//derecha
+	if(headX > canvas.width / gridNumber){
+		gameOver = true;
+	}
+	//abajo
+	if(headY > canvas.height / gridNumber){
+		gameOver = true;
+	}
+	
+	//Texto de "Demasiada negatividad!"
+	if(gameOver){
+		ctx.fillStyle = "#FF7D88"
+		ctx.font = "70px Poppins, sans-serif";
+		ctx.fillText("Demasiada", canvas.width / 7.5, canvas.height / 2.2);
+
+		ctx.fillStyle = "#F0616F"
+		ctx.font = "70px Poppins, sans-serif";
+		ctx.fillText("negatividad!", canvas.width / 10.5, canvas.height / 1.7);
+	}
+
 
 	return gameOver
 }
