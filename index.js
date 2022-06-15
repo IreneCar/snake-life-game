@@ -67,6 +67,20 @@ function canvasUpdate(){
 	drawHappyCandy();
 	drawSnake();
 
+	//increase speed cada vez que coma caramelo de la felicidad
+	if(score > 5){
+		speed = 10;
+	}
+	if(score > 10){
+		speed = 12;
+	}
+	if(score > 15){
+		speed = 15;
+	}
+	if(score > 20){
+		speed = 19;
+	}
+
 	setTimeout(canvasUpdate, 1000/ speed);
 }
 
