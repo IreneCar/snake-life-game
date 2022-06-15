@@ -20,9 +20,9 @@ class SnakePart{
 let speed = 7;
 
 // cuadrícula creada que crea una rejilla que consta de 20 cuadros en vertical x 20 en horizontal imaginarios 
-let gridNumber = 20;
+let gridNumber = 30;
 // tamaño de la cuadrícula
-let gridSize = canvas.width / gridNumber - 20;
+let gridSize = canvas.width / gridNumber - 3;
 // posición de la cabeza de la serpiente en horizontal
 let headX = 15;
 // posición de la cabeza de la serpiente en vertical
@@ -49,8 +49,16 @@ console.log("Score: ", score);
 
 // Esta función refrescará el canvas
 function canvasUpdate(){
-	clearScreen();
 	changeSnakePosition();
+
+	//si la serpiente colisiona con la pared o con ella misma y hace game over
+	//no dibujará nada más del juego, se pausará y saldrá el game over con el return.
+	let result = isGameOver();
+	if(result){
+		return;
+	};
+
+	clearScreen();
 
 	checkCandyCollision();
 	drawHappyCandy();
@@ -175,6 +183,19 @@ function checkCandyCollision(){
 
 }
 
+
+// ------------------------ 7. El Game Over ------------------------
+
+function isGameOver(){
+	let gameOver = false;
+
+	//walls
+	if(headX < 0){
+		gameOver = true;
+	}
+
+	return gameOver
+}
 
 
 canvasUpdate();
