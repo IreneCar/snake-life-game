@@ -44,6 +44,9 @@ let yVelocity = 0;
 let score = 1;
 console.log("Score: ", score);
 
+//Audio de cuando come el caramelo
+const sound = new Audio("bite.mp3")
+
 
 // ------------------------ 2. Update Screen ------------------------
 
@@ -169,8 +172,8 @@ function drawHappyCandy() {
 //el caramelo cambie su posición de manera random y el uso de Math.floor es para redondear el número de la posición.
 function checkCandyCollision(){
 	if(headX === happyCandyX && headY === happyCandyY){
-		happyCandyX = Math.floor(Math.random() * gridNumber);
-		happyCandyY = Math.floor(Math.random() * gridNumber);
+		happyCandyX = Math.floor(Math.random() * canvas.height / gridNumber);
+		happyCandyY = Math.floor(Math.random() * canvas.height / gridNumber);
 		//incrementamos el tamaño de la serpiente
 		tailLength ++;
 
@@ -179,6 +182,9 @@ function checkCandyCollision(){
 	  scoreElem.innerHTML = score;
 		score ++;
 		console.log("score2: ",score);
+
+		//Add sound
+		sound.play();
 	}
 
 }
@@ -188,6 +194,13 @@ function checkCandyCollision(){
 
 function isGameOver(){
 	let gameOver = false;
+
+	//Hacer que detecte si la serpiente está en movimiento para que no dé game over al inicio
+	// ya que al inicio el cuerpo de la serpiente colisiona con la cabeza, pero aún no ha empezado el juego
+	if(yVelocity === 0 && xVelocity === 0){
+		return false;
+	}
+
 
 	//colision con las paredes:
 	//izquierda
@@ -206,7 +219,17 @@ function isGameOver(){
 	if(headY > canvas.height / gridNumber){
 		gameOver = true;
 	}
+
+	//game over al colisionar la serpiente consigo misma
+	for(let i = 0; i < snakeParts.length; i++){
+		let part = snakeParts[i];
+		if(part.x === headX && part.y === headY){
+			gameOver = true;
+			break;
+		}
+	}
 	
+
 	//Texto de "Demasiada negatividad!"
 	if(gameOver){
 		ctx.fillStyle = "#FF7D88"
