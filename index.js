@@ -210,12 +210,12 @@ function isGameOver(){
 	//Texto de "Demasiada negatividad!"
 	if(gameOver){
 		ctx.fillStyle = "#FF7D88"
-		ctx.font = "70px Poppins, sans-serif";
-		ctx.fillText("Demasiada", canvas.width / 7.5, canvas.height / 2.2);
+		ctx.font = "70px Fredoka One, cursive";
+		ctx.fillText("Demasiada", canvas.width / 5.6, canvas.height / 2.1);
 
 		ctx.fillStyle = "#F0616F"
-		ctx.font = "70px Poppins, sans-serif";
-		ctx.fillText("negatividad!", canvas.width / 10.5, canvas.height / 1.7);
+		ctx.font = "70px Fredoka One, cursive";
+		ctx.fillText("negatividad!", canvas.width / 7.2, canvas.height / 1.6);
 	}
 
 
