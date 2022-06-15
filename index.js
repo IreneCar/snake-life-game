@@ -56,8 +56,6 @@ function canvasUpdate(){
 	drawHappyCandy();
 	drawSnake();
 
-	//scoreUpdate();
-
 	setTimeout(canvasUpdate, 1000/ speed);
 }
 
@@ -92,7 +90,6 @@ ctx.beginPath();
 	ctx.fillStyle = "#ffabf6";
 	ctx.arc(headX * gridNumber, headY * gridNumber, gridSize, 0, 2*Math.PI);
 	ctx.fill();
-
 }
 
 //Función que attach la cabeza de la serpiente con la velocidad, para que esta se mueva
@@ -169,32 +166,15 @@ function checkCandyCollision(){
 		//incrementamos el tamaño de la serpiente
 		tailLength ++;
 
+		//score, cada vez que la serpiente colisiona con el caramelo suma un punto
 		let scoreElem = document.querySelector("#score");
 	  scoreElem.innerHTML = score;
 		score ++;
 		console.log("score2: ",score);
 	}
 
-	
-	
-	
 }
 
-
-// ------------------------ 7. Score ------------------------
-/*
-//Con esto entramos en el parrafo del documento que en un inicio está vacío en el html
-let scoreElem = document.querySelector("#score");
-// entramos al contenido
-let scoreNum = scoreElem.innerHTML;
-
-function scoreUpdate(){
-	scoreNum = score;
-	console.log("ScoreNum", scoreNum);
-	return scoreNum;
-}
-scoreUpdate();
-*/
 
 
 canvasUpdate();

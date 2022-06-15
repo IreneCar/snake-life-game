@@ -11,28 +11,19 @@ body {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
-	justify-content: space-evenly;
-	align-items: flex-start;
+	justify-content: space-around;
+	align-items: center;
 	align-content: center;
 	margin-top: 20%;
 	
 }
 
-h1{
-	color: #00adad;
-	font-size: 100px;
-}
-
-h3 {
-	color: #d963d0;
-	font-size: 30px;
-}
-
-p {
-	color: #464555;
-}
 
 #score {
 	color: #00adad;
 	font-size: 60px;
+}
+
+.logo {
+	width: 50%;
 }
