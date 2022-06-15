@@ -245,18 +245,40 @@ function isGameOver(){
 	
 
 	//Texto de "Demasiada negatividad!"
-	if(gameOver){
-		ctx.fillStyle = "#FF7D88"
+	if(gameOver && score <= 15){
+		ctx.fillStyle = "#ff8888"
 		ctx.font = "70px Fredoka One, cursive";
 		ctx.fillText("Demasiada", canvas.width / 5.6, canvas.height / 2.1);
 
-		ctx.fillStyle = "#F0616F"
+		ctx.fillStyle = "#c35256"
 		ctx.font = "70px Fredoka One, cursive";
 		ctx.fillText("negatividad!", canvas.width / 7.2, canvas.height / 1.6);
 	}
 
+	//Texto de "Has explotado de amor"
+	if(gameOver && score > 15){
+		ctx.fillStyle = "#5BFBD8"
+		ctx.font = "70px Fredoka One, cursive";
+		ctx.fillText("Has explotado", canvas.width / 10, canvas.height / 2.1);
+
+		ctx.fillStyle = "#A18CF4"
+		ctx.font = "70px Fredoka One, cursive";
+		ctx.fillText("de amor!", canvas.width / 4.1, canvas.height / 1.6);
+	}
+
 
 	return gameOver
+}
+
+
+// ------------------------ 8. El Caramelo Negativo ------------------------
+
+//función para crear el caramelo de la felicidad
+function drawNegativeCandy() {
+	ctx.beginPath();
+	ctx.fillStyle = "#968AB6";
+	ctx.arc(happyCandyX * gridNumber, happyCandyY * gridNumber, gridSize, 0, 2*Math.PI);
+	ctx.fill();
 }
 
 
