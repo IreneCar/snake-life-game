@@ -347,6 +347,7 @@ function snakeNegativeCollision(){
 			snakeParts[i].x === negativeCandyX && snakeParts[i].y === negativeCandyY){
 	
 				scoreN += 1;
+				negativeSound.play()
 				if(scoreN === 2){
 					gameOver = true;
 					isGameOver();
