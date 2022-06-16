@@ -36,8 +36,8 @@ let happyCandyX = 5;
 let happyCandyY= 5;
 
 //caramelos de la negatividad
-let negativeCandyX = 16;
-let negativeCandyY= 10;
+let negativeCandyX = null;
+let negativeCandyY= null;
 
 //Velocidad Horizontal
 let xVelocity = 0;
@@ -83,15 +83,17 @@ function canvasUpdate(){
 
 	drawSnake();
 
-	changeCandyPosition();
-	snakeNegativeCollision();
+	//changeCandyPosition();
+	//snakeNegativeCollision();
 	//drawNegativeCandy();
 
 
 	//increase speed cada vez que coma caramelo de la felicidad
 	if(score > 5){
 		speed = 10;
+		changeCandyPosition();
 		drawNegativeCandy();
+		snakeNegativeCollision();
 	}
 	if(score > 10){
 		speed = 11;
@@ -102,6 +104,9 @@ function canvasUpdate(){
 	if(score > 20){
 		speed = 13;
 	}
+	
+	
+	
 
 	setTimeout(canvasUpdate, 1000/ speed);
 }
@@ -305,12 +310,12 @@ function drawNegativeCandy() {
 
 //Función que attach el caramelo negativo con la velocidad, para que esta se mueva
 function changeCandyPosition(){
+//	debugger;
 	negativeCandyX = negativeCandyX + xV; //16
 	negativeCandyY = negativeCandyY + yV; //10
 	//console.log(negativeCandyX, negativeCandyY);
 
 	if (negativeCandyX >= (canvas.width - 10)/ gridNumber) {
-		//negativeCandyX = -1;
 		xV = -1;
 		yV = Math.random() <= 0.6 ?-1:1;
 		/*
@@ -320,16 +325,13 @@ function changeCandyPosition(){
 			return 1
 		}*/
 	} else if (negativeCandyY >= canvas.height/ gridNumber) {
-		//negativeCandyY = -1;
 		yV = -1;
 		xV = Math.random() <= 0.5 ?-1:1;
 		
 	} else if (negativeCandyX <= 0 / gridNumber) {
-		//negativeCandyX = 1;
 		xV = 1;
 		yV = Math.random() <= 0.4 ?-1:1;
 	} else if (negativeCandyY <= 0 / gridNumber) {
-		//negativeCandyY = 1;
 		yV = 1;
 		xV = Math.random() <= 0.7 ?-1:1;
 	}
@@ -349,12 +351,16 @@ function snakeNegativeCollision(){
 					gameOver = true;
 					isGameOver();
 				}
+				//debugger;
 				console.log("hola", scoreN);
 		}
 	}
 
 
 }
+
+
+// ------------------------ 9. Botón refresh juego ------------------------
 
 function clickButton(){
 	window.location.reload();
@@ -365,4 +371,4 @@ document.getElementById("boton").addEventListener("click", clickButton)
 canvasUpdate();
 
 
-// ------------------------ 9. Botón refresh juego ------------------------
+
