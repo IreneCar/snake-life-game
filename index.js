@@ -22,7 +22,7 @@ let speed = 7;
 // cuadrícula creada que crea una rejilla que consta de 20 cuadros en vertical x 20 en horizontal imaginarios 
 let gridNumber = 30;
 // tamaño de la cuadrícula
-let gridSize = canvas.width / gridNumber - 3;
+let gridSize = canvas.width / gridNumber - 5;
 // posición de la cabeza de la serpiente en horizontal
 let headX = 15;
 // posición de la cabeza de la serpiente en vertical
@@ -35,17 +35,29 @@ let tailLength = 2;
 let happyCandyX = 5;
 let happyCandyY= 5;
 
+//caramelos de la negatividad
+let negativeCandyX = 16;
+let negativeCandyY= 10;
+
 //Velocidad Horizontal
 let xVelocity = 0;
 //Velocidad Vertical
 let yVelocity = 0;
+
+//Velocidad Horizontal negative candy
+let xV = 1;
+//Velocidad Vertical negative candy
+let yV = 0;
 
 //Score
 let score = 1;
 console.log("Score: ", score);
 
 //Audio de cuando come el caramelo
-const sound = new Audio("bite.mp3")
+const biteSound = new Audio("bite.mp3")
+
+//Audio de cuando choca la negatividad
+const negativeSound = new Audio("negative-collision.mp3")
 
 
 // ------------------------ 2. Update Screen ------------------------
@@ -65,7 +77,13 @@ function canvasUpdate(){
 
 	checkCandyCollision();
 	drawHappyCandy();
+
 	drawSnake();
+
+	changeCandyPosition();
+	snakeNegativeCollision();
+	drawNegativeCandy();
+
 
 	//increase speed cada vez que coma caramelo de la felicidad
 	if(score > 5){
@@ -198,7 +216,7 @@ function checkCandyCollision(){
 		console.log("score2: ",score);
 
 		//Add sound
-		sound.play();
+		biteSound.play();
 	}
 
 }
@@ -276,10 +294,52 @@ function isGameOver(){
 //función para crear el caramelo de la felicidad
 function drawNegativeCandy() {
 	ctx.beginPath();
-	ctx.fillStyle = "#968AB6";
-	ctx.arc(happyCandyX * gridNumber, happyCandyY * gridNumber, gridSize, 0, 2*Math.PI);
+	ctx.fillStyle = "#ABA7CC";
+	ctx.arc(negativeCandyX * gridNumber, negativeCandyY * gridNumber, gridSize, 0, 2*Math.PI);
 	ctx.fill();
 }
+
+//Función que attach el caramelo negativo con la velocidad, para que esta se mueva
+function changeCandyPosition(){
+	negativeCandyX = negativeCandyX + xV; //16
+	negativeCandyY = negativeCandyY + yV; //10
+	//console.log(negativeCandyX, negativeCandyY);
+
+	if (negativeCandyX >= canvas.width/ gridNumber) {
+		//negativeCandyX = -1;
+		xV = -1;
+		yV = 1;
+	} else if (negativeCandyY >= canvas.height/ gridNumber) {
+		//negativeCandyY = -1;
+		yV = -1;
+	} else if (negativeCandyX <= 0 / gridNumber) {
+		//negativeCandyX = 1;
+
+		xV = 1;
+	} else if (negativeCandyY <= 0 / gridNumber) {
+		//negativeCandyY = 1;
+		yV = 1;
+	}
+
+
+}
+
+function snakeNegativeCollision(){
+	//console.log(snakeParts);
+	for (let i = 0; i < snakeParts.length; i++) {
+		//const element = array[index];
+		if(headX === negativeCandyX && headY === negativeCandyY ||
+			snakeParts[i].x === negativeCandyX && snakeParts[i].y === negativeCandyY){
+	
+				console.log("hola");
+		}
+	}
+
+		
+
+}
+
+
 
 
 canvasUpdate();
