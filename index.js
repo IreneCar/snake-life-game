@@ -356,7 +356,13 @@ function snakeNegativeCollision(){
 
 }
 
-
+function clickButton(){
+	window.location.reload();
+}
+document.getElementById("boton").addEventListener("click", clickButton)
 
 
 canvasUpdate();
+
+
+// ------------------------ 9. Botón refresh juego ------------------------
