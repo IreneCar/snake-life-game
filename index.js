@@ -51,7 +51,7 @@ let yV = 0;
 
 //Score
 let score = 1;
-console.log("Score: ", score);
+//console.log("Score: ", score);
 
 //Score negative
 let scoreN = 0;
@@ -217,7 +217,7 @@ function checkCandyCollision(){
 		let scoreElem = document.querySelector("#score");
 	  scoreElem.innerHTML = score;
 		score ++;
-		console.log("score2: ",score);
+		//console.log("score2: ",score);
 
 		//Add sound
 		biteSound.play();
