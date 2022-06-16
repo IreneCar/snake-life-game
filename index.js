@@ -53,6 +53,9 @@ let yV = 0;
 let score = 1;
 console.log("Score: ", score);
 
+//Score negative
+let scoreN = 0;
+
 //Audio de cuando come el caramelo
 const biteSound = new Audio("bite.mp3")
 
@@ -82,21 +85,22 @@ function canvasUpdate(){
 
 	changeCandyPosition();
 	snakeNegativeCollision();
-	drawNegativeCandy();
+	//drawNegativeCandy();
 
 
 	//increase speed cada vez que coma caramelo de la felicidad
 	if(score > 5){
 		speed = 10;
+		drawNegativeCandy();
 	}
 	if(score > 10){
-		speed = 12;
+		speed = 11;
 	}
 	if(score > 15){
-		speed = 15;
+		speed = 12;
 	}
 	if(score > 20){
-		speed = 19;
+		speed = 13;
 	}
 
 	setTimeout(canvasUpdate, 1000/ speed);
@@ -223,9 +227,9 @@ function checkCandyCollision(){
 
 
 // ------------------------ 7. El Game Over ------------------------
-
+let gameOver = false;
 function isGameOver(){
-	let gameOver = false;
+	
 
 	//Hacer que detecte si la serpiente está en movimiento para que no dé game over al inicio
 	// ya que al inicio el cuerpo de la serpiente colisiona con la cabeza, pero aún no ha empezado el juego
@@ -305,20 +309,29 @@ function changeCandyPosition(){
 	negativeCandyY = negativeCandyY + yV; //10
 	//console.log(negativeCandyX, negativeCandyY);
 
-	if (negativeCandyX >= canvas.width/ gridNumber) {
+	if (negativeCandyX >= (canvas.width - 10)/ gridNumber) {
 		//negativeCandyX = -1;
 		xV = -1;
-		yV = 1;
+		yV = Math.random() <= 0.6 ?-1:1;
+		/*
+		if(Math.random() <= 0.6){
+			return -1
+		} else {
+			return 1
+		}*/
 	} else if (negativeCandyY >= canvas.height/ gridNumber) {
 		//negativeCandyY = -1;
 		yV = -1;
+		xV = Math.random() <= 0.5 ?-1:1;
+		
 	} else if (negativeCandyX <= 0 / gridNumber) {
 		//negativeCandyX = 1;
-
 		xV = 1;
+		yV = Math.random() <= 0.4 ?-1:1;
 	} else if (negativeCandyY <= 0 / gridNumber) {
 		//negativeCandyY = 1;
 		yV = 1;
+		xV = Math.random() <= 0.7 ?-1:1;
 	}
 
 
@@ -331,11 +344,15 @@ function snakeNegativeCollision(){
 		if(headX === negativeCandyX && headY === negativeCandyY ||
 			snakeParts[i].x === negativeCandyX && snakeParts[i].y === negativeCandyY){
 	
-				console.log("hola");
+				scoreN += 1;
+				if(scoreN === 2){
+					gameOver = true;
+					isGameOver();
+				}
+				console.log("hola", scoreN);
 		}
 	}
 
-		
 
 }
 
