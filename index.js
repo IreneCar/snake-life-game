@@ -91,15 +91,15 @@ function canvasUpdate(){
 	//increase speed cada vez que coma caramelo de la felicidad
 	if(score > 5){
 		speed = 10;
-		changeCandyPosition();
-		drawNegativeCandy();
-		snakeNegativeCollision();
 	}
 	if(score > 10){
 		speed = 11;
 	}
 	if(score > 15){
 		speed = 12;
+		changeCandyPosition();
+		drawNegativeCandy();
+		snakeNegativeCollision();
 	}
 	if(score > 20){
 		speed = 13;
